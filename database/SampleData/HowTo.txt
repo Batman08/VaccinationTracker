@@ -1,0 +1,9 @@
+1. https://spottedtiger.tripod.com/D_Language/D_Randomly_Gen_Data_XP.html
+where I got random first name and last name male and female data
+
+2. https://www.convertcsv.com/xml-to-csv.htm
+Converted xml to csv
+
+3. Imported csv to sql server
+
+4. Migrate data to PatientSample table
