@@ -40,6 +40,7 @@ end
 
 --update PatientsSample set FirstName = null, LastName = null 
 --update PatientsSample set Age = null
+--update PatientsSample set PatientUniqueId = null
 
 select * from PatientsSample where FirstName is null or LastName is null
 
@@ -49,3 +50,12 @@ begin
 end
 
 select NEWID()
+
+select substring(CAST(NEWID() as nvarchar(36)),0, 9)
+
+while (select count(*) from PatientsSample where PatientUniqueId is null) > 0
+begin
+	update top(1) PatientsSample set PatientUniqueId = substring(CAST(NEWID() as nvarchar(36)),0, 9) where PatientUniqueId is null
+end
+
+select PatientUniqueId from PatientsSample group by PatientUniqueId having count(*) > 1
