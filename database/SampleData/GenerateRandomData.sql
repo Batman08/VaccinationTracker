@@ -1,17 +1,5 @@
 SELECT *  FROM [Vaccinations].[dbo].[PatientsSample]
 
-  select count(*) from PatientsSample
-
-
-    
-select * from Patients_male_first_names
-select * from Patients_last_names
-
-  select * from Patients_female_first_names
-
-  Select ceiling(rand()*5408) as FirstNamePos, ceiling(rand()*88587) as LastNamePos
-
-
 -- Male Names
 declare @i int  = 0
 while @i < 5000
@@ -36,26 +24,25 @@ begin
 
 	set @i = @i + 1
 end
+GO
 
-
---update PatientsSample set FirstName = null, LastName = null 
---update PatientsSample set Age = null
---update PatientsSample set PatientUniqueId = null
-
-select * from PatientsSample where FirstName is null or LastName is null
-
+-- Age
 while (select count(*) from PatientsSample where age is null) > 0
 begin
 	update top(1) PatientsSample set Age = 12 + ceiling(rand()*90) where age is null
 end
 
-select NEWID()
-
-select substring(CAST(NEWID() as nvarchar(36)),0, 9)
-
+-- Patient Unique Id
 while (select count(*) from PatientsSample where PatientUniqueId is null) > 0
 begin
 	update top(1) PatientsSample set PatientUniqueId = substring(CAST(NEWID() as nvarchar(36)),0, 9) where PatientUniqueId is null
 end
 
-select PatientUniqueId from PatientsSample group by PatientUniqueId having count(*) > 1
+-- Insert data from PatientsSample table into Patients table
+insert into Patients (PatientUniqueId, FirstName, LastName, Age, [Address], Postcode, Telephone)
+select PatientUniqueId, FirstName, LastName, Age, [Address], Postcode, Phone_number
+from PatientsSample
+
+
+--select * from Patients
+--select * from PatientsSample

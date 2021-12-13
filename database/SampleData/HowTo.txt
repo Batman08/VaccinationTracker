@@ -7,3 +7,8 @@ Converted xml to csv
 3. Imported csv to sql server
 
 4. Migrate data to PatientSample table
+
+5. Generated random PatientUniqueId for all patients using Globally Unique Identifier (GUID) with substring to
+   make the length of the PatientUniqueId 8 characters long.
+   
+6. Created query to insert data from PatientSample table into Patients table
