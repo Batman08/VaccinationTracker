@@ -12,3 +12,12 @@ Converted xml to csv
    make the length of the PatientUniqueId 8 characters long.
    
 6. Created query to insert data from PatientSample table into Patients table
+
+7. Generated Patient table sql script 
+
+8. Deleted PatientSample table beacuase Patient table now had the same data
+
+9. https://www.cdc.gov/vaccines/programs/iis/code-sets/vis-barcode-lookup-table.html
+Imported list of vaccine types flat file to sql server
+
+10. Migrate data to VaxSample table
