@@ -27,3 +27,33 @@ Imported list of vaccine types flat file to sql server
 12. Migrated data from VaxSample to VaccinationTypes
 
 13. Generated VaccinationTypes table sql script
+
+14. https://www.google.com/search?q=medical+professions&rlz=1C1ONGR_en-GBGB931GB931&oq=medical+professions+&aqs=chrome..69i57j69i59.10800j0j7&sourceid=chrome&ie=UTF-8
+Selected list of 9 medical professions
+
+15. Used loop to create 25 medical persons
+
+16. Each medical person was given random medical professions from my list of 9
+
+17. Created rest of the data for medical persons using random data from patients table
+
+18. Generated MedicalPersons table sql script
+
+19. https://www.england.nhs.uk/coronavirus/publication/vaccination-sites/
+Imported list of vaccination centres
+
+20. Took 1 vaccination centre for every 500 in list. Got total of 5
+
+21. Created insert statement to insert the name, address, postcode, telephone for each of the 5 vaccination centres into 
+VaccinationCentres table
+
+22. Got the list of vaccination types and the percentage they will be given. Used a temporary table called 
+#TempVaccinationTypes and inputed the name of the vaccination types and percentage of patients which will recieve each 
+vaccination type
+
+23. Iterated over each vaccine type and assigned it to patients based on percentage of patients that should recieve eacch vaccination. 
+
+24. Also assigned random date/time to date/time field
+
+25. As each insert for each vaccination type was completed, the vaccination type with percentage of patients that
+will recieve that vaccination was removed from the #TempVaccinationTypes in memory table to stop an infinite loop
