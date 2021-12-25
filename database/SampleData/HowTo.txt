@@ -21,3 +21,9 @@ Converted xml to csv
 Imported list of vaccine types flat file to sql server
 
 10. Migrate data to VaxSample table
+
+11. Created query to insert current vaccination types
+
+12. Migrated data from VaxSample to VaccinationTypes
+
+13. Generated VaccinationTypes table sql script
