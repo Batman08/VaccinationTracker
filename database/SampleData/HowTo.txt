@@ -57,3 +57,19 @@ vaccination type
 
 25. As each insert for each vaccination type was completed, the vaccination type with percentage of patients that
 will recieve that vaccination was removed from the #TempVaccinationTypes in memory table to stop an infinite loop
+
+26. Changed sql query to generate random data for VaccinationCentreId and MedicalPersonId for PatientsVaccinations table.
+
+27. Took random data in multiple sections to have a wider spread of data.
+
+28. Deleted old data from PatientVaccinations table
+
+29. Created new data for PatientVaccinations table from changed sql query
+
+30. Generated PatientVaccinations table sql script again
+
+31. Created website project.
+
+32. Created project folder outline
+
+33. Added php files that would be needed for Login, MasterPages and index page
