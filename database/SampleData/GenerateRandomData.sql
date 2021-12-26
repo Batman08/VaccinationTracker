@@ -148,6 +148,9 @@ UPDATE #TempVaccinationTypes SET PercentGiven = 1 WHERE Name = 'Yellow Fever VIS
 -- iterate over each vaccine type and assign to patients
 --------------------------------------------------------
 
+DECLARE @NumVaccinationCentres INT = 1; -- max of 5
+DECLARE @NumMedicalPersons INT = 10; -- max of 25
+
 WHILE (SELECT COUNT(*)FROM #TempVaccinationTypes) > 0
 BEGIN
     -- get a vaccine to process
@@ -158,13 +161,32 @@ BEGIN
     SELECT TOP 1 @VaccinationTypeId = VaccinationTypeId, @VaccineName = Name, @PercentGiven = PercentGiven
     FROM   #TempVaccinationTypes;
 
+    -- calculate VaccinationCentreId
+    IF (SELECT COUNT(*)FROM #TempVaccinationTypes) % 5 = 0
+       AND @NumVaccinationCentres < 5
+    BEGIN
+        SET @NumVaccinationCentres = @NumVaccinationCentres + 1;
+    END;
+
+    -- calculate MedicalPersonId
+    IF (SELECT COUNT(*)FROM #TempVaccinationTypes) = 25
+    BEGIN
+        SET @NumMedicalPersons = 17;
+    END;
+
+    IF (SELECT COUNT(*)FROM #TempVaccinationTypes) = 15
+    BEGIN
+        SET @NumMedicalPersons = 25;
+    END;
+
+
     -- give vaccine to patients
     DECLARE @NumPatients INT = (10500 * @PercentGiven) / 100;
 
     INSERT INTO PatientVaccinations (DateTime, VaccinationCentreId, MedicalPersonId, PatientId, VaccinationTypeId)
     SELECT DATEADD(SECOND, CAST(FLOOR(RAND(CAST(NEWID() AS VARBINARY)) * 63072000) AS INT), '20200101'),
-           1 + ABS(CHECKSUM(NEWID())) % 5,
-           1 + ABS(CHECKSUM(NEWID())) % 25,
+           1 + ABS(CHECKSUM(NEWID())) % @NumVaccinationCentres,
+           1 + ABS(CHECKSUM(NEWID())) % @NumMedicalPersons,
            PatientId,
            @VaccinationTypeId
     FROM   Patients
