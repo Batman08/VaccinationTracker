@@ -27,8 +27,8 @@ $users = [
                         <label for="username">Username</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select
-                                <?php foreach ($users as $key => $value) { ?>
-                            <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
+                                <?php foreach ($users as $user) { ?>
+                            <option value="<?= $user['Id'] ?>"><?= $user['Name'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
