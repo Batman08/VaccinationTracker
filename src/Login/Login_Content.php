@@ -1,3 +1,20 @@
+<?php
+$users = [
+    [
+        'Id' => 1,
+        'Name' => 'John Doe'
+    ],
+    [
+        'Id' => 2,
+        'Name' => 'Bilal Asghar'
+    ],
+    [
+        'Id' => 3,
+        'Name' => 'Khadijah Asghar'
+    ]
+];
+?>
+
 <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card">
@@ -9,10 +26,10 @@
                     <div class="form-group">
                         <label for="username">Username</label>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Select User</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option selected>Select
+                                <?php foreach ($users as $key => $value) { ?>
+                            <option value="<?= $value['Id'] ?>"><?= $value['Name'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     <div class="form-group" style="margin-top: 10px;">
