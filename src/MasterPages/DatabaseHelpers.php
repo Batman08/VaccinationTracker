@@ -5,7 +5,7 @@ function OpenConnection()
     $server = "localhost";
     $username = "root";
     $password = "Hoisaejfr^&o2";
-    $database = "TestDatabase";
+    $database = "Vaccinations";
 
     $conn = new mysqli($server,$username, $password, $database);
 
@@ -38,7 +38,6 @@ function GetData($sql)
 
 function GetUsernames()
 {
-    // return GetData("EXEC spGetMedicalPersons");
-    return GetData("select * from test");
+    return GetData("call spGetMedicalPersons()");
 }
 ?>
