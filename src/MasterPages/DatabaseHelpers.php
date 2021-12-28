@@ -2,24 +2,16 @@
 
 function OpenConnection()
 {
-    // $serverName = ".\SQL2016";
-    // $connectionOptions = array(
-    //     "Database" => "Vaccinations",
-    //     "UID" => "VaxDbUser", "PWD" => "VaxDbUser"
-    // );
-    // $conn = sqlsrv_connect($serverName, $connectionOptions);
-
     $server = "localhost";
     $username = "root";
     $password = "Hoisaejfr^&o2";
     $database = "TestDatabase";
 
-    $conn = mysqli_connect($server, $username, $password, $database);
+    $conn = new mysqli($server,$username, $password, $database);
 
-    if (!$conn) {
-        echo "Failed to connect to MySQL: " . $conn;
-        exit();
-      }
+    if ($conn === false) {
+        die("ERROR: Could not connect. " . $conn->connect_error);
+    }
 
     return $conn;
 }
@@ -36,9 +28,9 @@ function GetData($sql)
             $rows[] = $row;
         }
         mysqli_free_result($result);
-        mysqli_close($conn);
+        $conn -> close();
     } catch (Exception $e) {
-        echo ("Error!");
+        echo "Error!" . $e->getMessage();
     }
 
     return $rows;
@@ -47,5 +39,6 @@ function GetData($sql)
 function GetUsernames()
 {
     // return GetData("EXEC spGetMedicalPersons");
-     return GetData("select * from test");
+    return GetData("select * from test");
 }
+?>
