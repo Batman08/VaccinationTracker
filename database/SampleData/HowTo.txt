@@ -73,3 +73,15 @@ will recieve that vaccination was removed from the #TempVaccinationTypes in memo
 32. Created project folder outline
 
 33. Added php files that would be needed for Login, MasterPages and index page
+
+33. Created basic login form
+
+34. Connected username dropdown list to a test database
+
+34. https://www.sqlines.com/online
+Converted t-sql scripts to mysql
+
+35. In notepadd++ had to add ; at the end of all insert statements so it worked in mysql
+
+36. creaetd GetUsernames function to return GetData function that called the spGetMedicalPersons sproc and returned list of 
+25 medical persons in dropdown list.
