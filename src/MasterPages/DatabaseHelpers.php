@@ -2,14 +2,24 @@
 
 function OpenConnection()
 {
-    $serverName = ".\SQL2016";
-    $connectionOptions = array(
-        "Database" => "Vaccinations",
-        "UID" => "VaxDbUser", "PWD" => "VaxDbUser"
-    );
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
-    if ($conn == false)
-        die('Invalid connection: ' . sqlsrv_errors());
+    // $serverName = ".\SQL2016";
+    // $connectionOptions = array(
+    //     "Database" => "Vaccinations",
+    //     "UID" => "VaxDbUser", "PWD" => "VaxDbUser"
+    // );
+    // $conn = sqlsrv_connect($serverName, $connectionOptions);
+
+    $server = "localhost";
+    $username = "root";
+    $password = "Hoisaejfr^&o2";
+    $database = "TestDatabase";
+
+    $conn = mysqli_connect($server, $username, $password, $database);
+
+    if (!$conn) {
+        echo "Failed to connect to MySQL: " . $conn;
+        exit();
+      }
 
     return $conn;
 }
@@ -18,16 +28,15 @@ function GetData($sql)
 {
     try {
         $conn = OpenConnection();
-        $result = sqlsrv_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
         if ($result == FALSE)
-            die('Invalid query: ' . sqlsrv_errors());
+            die('Invalid query: ' . mysqli_error($conn));
 
-        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        while ($row = mysqli_fetch_array($result)) {
             $rows[] = $row;
         }
-
-        sqlsrv_free_stmt($result);
-        sqlsrv_close($conn);
+        mysqli_free_result($result);
+        mysqli_close($conn);
     } catch (Exception $e) {
         echo ("Error!");
     }
@@ -35,8 +44,8 @@ function GetData($sql)
     return $rows;
 }
 
-function GetUsernames(){
-    return GetData("EXEC spGetMedicalPersons");
+function GetUsernames()
+{
+    // return GetData("EXEC spGetMedicalPersons");
+     return GetData("select * from test");
 }
-
-?>

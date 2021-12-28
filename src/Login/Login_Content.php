@@ -30,7 +30,7 @@ $usernames = GetUsernames();
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select
                                 <?php foreach ($usernames as $username) { ?>
-                            <option value="<?= $username['MedicalPersonId'] ?>"><?= $username['Username'] ?></option>
+                            <option value="<?= $username['Id'] ?>"><?= $username['Name'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
