@@ -1,18 +1,20 @@
 <?php
-$users = [
-    [
-        'Id' => 1,
-        'Name' => 'John Doe'
-    ],
-    [
-        'Id' => 2,
-        'Name' => 'Bilal Asghar'
-    ],
-    [
-        'Id' => 3,
-        'Name' => 'Khadijah Asghar'
-    ]
-];
+// $usernames = [
+//     [
+//         'MedicalPersonId' => 1,
+//         'Username' => 'John Doe'
+//     ],
+//     [
+//         'MedicalPersonId' => 2,
+//         'Username' => 'Bilal Asghar'
+//     ],
+//     [
+//         'MedicalPersonId' => 3,
+//         'Username' => 'Khadijah Asghar'
+//     ]
+// ];
+
+$usernames = GetUsernames();
 ?>
 
 <div class="row">
@@ -27,8 +29,8 @@ $users = [
                         <label for="username">Username</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select
-                                <?php foreach ($users as $user) { ?>
-                            <option value="<?= $user['Id'] ?>"><?= $user['Name'] ?></option>
+                                <?php foreach ($usernames as $username) { ?>
+                            <option value="<?= $username['MedicalPersonId'] ?>"><?= $username['Username'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
