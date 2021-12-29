@@ -28,7 +28,7 @@ $usernames = GetUsernames();
                     <div class="form-group">
                         <label for="username">Username</label>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Select
+                            <option selected disabled="disabled">--Select--
                                 <?php foreach ($usernames as $username) { ?>
                             <option value="<?= $username['MedicalPersonId'] ?>"><?= $username['Username'] ?></option>
                         <?php } ?>
