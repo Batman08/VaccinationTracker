@@ -1,20 +1,6 @@
 <?php
-// $usernames = [
-//     [
-//         'MedicalPersonId' => 1,
-//         'Username' => 'John Doe'
-//     ],
-//     [
-//         'MedicalPersonId' => 2,
-//         'Username' => 'Bilal Asghar'
-//     ],
-//     [
-//         'MedicalPersonId' => 3,
-//         'Username' => 'Khadijah Asghar'
-//     ]
-// ];
-
 $usernames = GetUsernames();
+
 ?>
 
 <div class="row">
@@ -24,11 +10,11 @@ $usernames = GetUsernames();
                 <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
             </div>
             <div class="card-body">
-                <form action='' method=''>
+                <form action='Login_Authenticate.php' method='POST'>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled="disabled">--Select--
+                        <select name="txtUsername" class="form-select" aria-label="select user">
+                            <option selected disabled="disabled">-- Select User --
                                 <?php foreach ($usernames as $username) { ?>
                             <option value="<?= $username['MedicalPersonId'] ?>"><?= $username['Username'] ?></option>
                         <?php } ?>
@@ -36,7 +22,7 @@ $usernames = GetUsernames();
                     </div>
                     <div class="form-group" style="margin-top: 10px;">
                         <label for="username">Password</label>
-                        <input type="text" name="password" class="form-control" disabled value="****">
+                        <input type="password" name="txtPassword" class="form-control" disabled value="*******">
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
                         <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
