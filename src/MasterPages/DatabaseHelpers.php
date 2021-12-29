@@ -38,6 +38,10 @@ function GetData($sql)
 
 function GetUsernames()
 {
-    return GetData("call spGetMedicalPersons()");
+    return GetData("call spGetUsernames()");
 }
-?>
+
+function GetMedicalPersonName($MedicalPersonId)
+{
+    return GetData("call spGetMedicalPersonName('$MedicalPersonId')");
+}
