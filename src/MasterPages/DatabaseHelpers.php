@@ -46,7 +46,7 @@ function GetMedicalPersonName($MedicalPersonId)
     return GetData("call spGetMedicalPersonName('$MedicalPersonId')");
 }
 
-function GetVaccinationCentre()
+function GetVaccinationCentres()
 {
     return GetData("call spGetVaccinationCentres()");
 }
