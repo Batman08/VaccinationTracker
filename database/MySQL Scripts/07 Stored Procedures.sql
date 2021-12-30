@@ -34,3 +34,15 @@ BEGIN
 SELECT VaccinationCentreId, Name AS VaccinationCentreName FROM VaccinationCentres ORDER BY Name;
 END$$
 DELIMITER ;
+
+
+-- [spGetVaccinationTypes]
+-- This will get a list of vaccination types after login
+-- -------------------------------------------------------
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationTypes`()
+BEGIN
+SELECT * FROM VaccinationTypes;
+END$$
+DELIMITER ;
