@@ -1,8 +1,9 @@
+CREATE DATABASE `Vaccinations`;
 USE `Vaccinations`;
 
 
 -- [MedicalPersons]
--------------------
+-- ----------------
 
 CREATE TABLE `medicalpersons` (
    `MedicalPersonId` int NOT NULL AUTO_INCREMENT,
@@ -17,7 +18,7 @@ CREATE TABLE `medicalpersons` (
 
 
 -- [Patients]
--------------
+-- ----------
 
 CREATE TABLE `patients` (
    `PatientId` int NOT NULL AUTO_INCREMENT,
@@ -33,7 +34,7 @@ CREATE TABLE `patients` (
  
 
 -- [VaccinationCentres]
------------------------
+-- --------------------
 
 CREATE TABLE `vaccinationcentres` (
    `VaccinationCentreId` int NOT NULL AUTO_INCREMENT,
@@ -46,7 +47,7 @@ CREATE TABLE `vaccinationcentres` (
 
 
 -- [VaccinationTypes]
----------------------
+-- ------------------
 
 CREATE TABLE `vaccinationtypes` (
    `VaccinationTypeId` int NOT NULL AUTO_INCREMENT,
@@ -56,7 +57,7 @@ CREATE TABLE `vaccinationtypes` (
  
  
 -- [PatientVaccinations]
-------------------------
+-- ---------------------
 
 CREATE TABLE `patientvaccinations` (
    `PatientVaccinationId` int NOT NULL AUTO_INCREMENT,
