@@ -12,14 +12,14 @@ END$$
 DELIMITER ;
 
 
--- [spGetMedicalPersonName]
--- This will get the selected medical persons name after login
--- -----------------------------------------------------------
+-- [spGetMedicalPerson]
+-- This will get the selected medical persons after login
+-- ------------------------------------------------------
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetMedicalPerson`(IN medicalPersonId int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetMedicalPerson`(IN medicalPersonId INT)
 BEGIN
-SELECT * FROM MedicalPersons where MedicalPersonId = medicalPersonId;
+SELECT * FROM MedicalPersons mp WHERE mp.MedicalPersonId = medicalPersonId;
 END$$
 DELIMITER ;
 
@@ -31,6 +31,6 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationCentres`()
 BEGIN
-SELECT VaccinationCentreId, Name AS VaccinationCentreName, CONCAT(Address, ', ' , Postcode) AS VaccinationCentreAddress, Telephone AS VaccinationCentreTelephone FROM VaccinationCentres ORDER BY VaccinationCentreId;
+SELECT VaccinationCentreId, Name AS VaccinationCentreName FROM VaccinationCentres ORDER BY Name;
 END$$
 DELIMITER ;
