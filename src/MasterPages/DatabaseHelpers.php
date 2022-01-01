@@ -41,12 +41,17 @@ function GetUsernames()
     return GetData("call spGetUsernames()");
 }
 
-function GetMedicalPersonName($MedicalPersonId)
+function GetMedicalPerson($medicalPersonId)
 {
-    return GetData("call spGetMedicalPersonName('$MedicalPersonId')");
+    return GetData("call spGetMedicalPerson('$medicalPersonId')");
 }
 
 function GetVaccinationCentres()
 {
     return GetData("call spGetVaccinationCentres()");
+}
+
+function GetVaccinationTypes()
+{
+    return GetData("call spGetVaccinationTypes()");
 }
