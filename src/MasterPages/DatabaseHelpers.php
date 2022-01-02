@@ -7,7 +7,7 @@ function OpenConnection()
     $password = "Hoisaejfr^&o2";
     $database = "Vaccinations";
 
-    $conn = new mysqli($server,$username, $password, $database);
+    $conn = new mysqli($server, $username, $password, $database);
 
     if ($conn === false) {
         die("ERROR: Could not connect. " . $conn->connect_error);
@@ -28,7 +28,7 @@ function GetData($sql)
             $rows[] = $row;
         }
         mysqli_free_result($result);
-        $conn -> close();
+        $conn->close();
     } catch (Exception $e) {
         echo "Error!" . $e->getMessage();
     }
@@ -59,4 +59,9 @@ function GetVaccinationTypes()
 function GetVaccinationHistory($p_MedicalPersonId)
 {
     return GetData("call spGetVaccinationHistory('$p_MedicalPersonId')");
+}
+
+function InsertPatientVaccination($p_DateTime, $p_VaccinationCentreId, $p_MedicalPersonId, $p_PatientId, $p_VaccinationTypeId)
+{
+    return GetData("call spInsertPatientVaccination('$p_DateTime', '$p_VaccinationCentreId', '$p_MedicalPersonId', '$p_PatientId', '$p_VaccinationTypeId')");
 }
