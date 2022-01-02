@@ -41,9 +41,9 @@ function GetUsernames()
     return GetData("call spGetUsernames()");
 }
 
-function GetMedicalPerson($medicalPersonId)
+function GetMedicalPerson($p_MedicalPersonId)
 {
-    return GetData("call spGetMedicalPerson('$medicalPersonId')");
+    return GetData("call spGetMedicalPerson('$p_MedicalPersonId')");
 }
 
 function GetVaccinationCentres()
@@ -56,7 +56,7 @@ function GetVaccinationTypes()
     return GetData("call spGetVaccinationTypes()");
 }
 
-function GetVaccinationHistory($medicalPersonId)
+function GetVaccinationHistory($p_MedicalPersonId)
 {
-    return GetData("call spGetVaccinationHistory('$medicalPersonId')");
+    return GetData("call spGetVaccinationHistory('$p_MedicalPersonId')");
 }
