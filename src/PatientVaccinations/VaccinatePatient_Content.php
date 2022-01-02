@@ -28,7 +28,7 @@ $vaccinationTypes = GetVaccinationTypes();
 
 <hr />
 
-<form action="ViewNewPatient_content.php" method="post">
+<form action="" method="post">
 
     <div class="form-group padBottom10">
         <label for="vaccination_datetime">Date</label>
