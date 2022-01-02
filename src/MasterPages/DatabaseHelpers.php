@@ -55,3 +55,8 @@ function GetVaccinationTypes()
 {
     return GetData("call spGetVaccinationTypes()");
 }
+
+function GetVaccinationHistory($medicalPersonId)
+{
+    return GetData("call spGetVaccinationHistory('$medicalPersonId')");
+}

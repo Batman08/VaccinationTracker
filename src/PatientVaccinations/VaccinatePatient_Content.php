@@ -5,10 +5,16 @@ $vaccinationCentres = GetVaccinationCentres();
 $vaccinationTypes = GetVaccinationTypes();
 ?>
 
-<div class="row padBottom10">
+<div class="row">
     <div class="col-sm-12">
-        <h3><?= $medicalPerson['FirstName'] . ' ' . $medicalPerson['LastName'] . ' - ' . $medicalPerson['Profession']; ?></h3>
+        <h3><i class="fas fa-user"></i> <?= $medicalPerson['FirstName'] . ' ' . $medicalPerson['LastName'] . ' - ' . $medicalPerson['Profession']; ?></h3>
         <div class="text-muted"><?= $medicalPerson['Address'] . ', ' . $medicalPerson['Postcode'] . ', Tel:' . $medicalPerson['Telephone']; ?></div>
+    </div>
+</div>
+
+<div class="row padBottom30">
+    <div class="col-sm-12" style="text-align: right;">
+        <a href="/PatientVaccinations/VaccinationHistory.php" class="btn btn-success"><i class="fas fa-book-medical"></i> Vaccination History</a>
     </div>
 </div>
 

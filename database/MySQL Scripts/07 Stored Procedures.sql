@@ -46,3 +46,22 @@ BEGIN
 SELECT * FROM VaccinationTypes;
 END$$
 DELIMITER ;
+
+
+-- [spGetVaccinationHistory]
+-- This will get a list of vaccinators history
+-- -------------------------------------------
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationHistory`(IN medicalPersonId INT)
+BEGIN
+SELECT pv.DateTime, vc.Name AS VaccinationCentre, CONCAT(p.FirstName , ' ' , p.LastName) AS PatientName, vt.Name AS VaccinationType
+FROM medicalpersons mp 
+	INNER JOIN patientvaccinations pv ON mp.MedicalPersonId = pv.MedicalPersonId
+	INNER JOIN vaccinationcentres vc ON pv.VaccinationCentreId = vc.VaccinationCentreId
+	INNER JOIN patients p ON pv.PatientId = p.PatientId
+	INNER JOIN vaccinationtypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
+WHERE mp.MedicalPersonId = medicalPersonId
+ORDER BY pv.DateTime DESC;
+END$$
+DELIMITER ;
