@@ -74,7 +74,8 @@ will recieve that vaccination was removed from the #TempVaccinationTypes in memo
 
 33. Added php files that would be needed for Login, MasterPages and index page
 
-33. Created basic login form
+33. Created master page so if I needed to change multiple pages I would only need to change the code in one place. Also
+created basic login form.
 
 34. Connected username dropdown list to a test database
 
@@ -83,5 +84,25 @@ Converted t-sql scripts to mysql
 
 35. In notepadd++ had to add ; at the end of all insert statements so it worked in mysql
 
-36. creaetd GetUsernames function to return GetData function that called the spGetMedicalPersons sproc and returned list of 
-25 medical persons in dropdown list.
+36. Created GetUsernames function to return GetData function that called the spGetMedicalPersons sproc and returned list of 
+25 medical persons in dropdown list. Added spGetMedicalPersons sproc to stored procedures script
+
+37. Re-named spGetMedicalPersons sproc to spGetUsernames. Updated spGetUsernames sproc in stored procedures script
+
+37. Made re-direct to Patient Vaccinations page after login from login page
+
+38. Created Patient Vaccinations page that will be able to add a new patient and insert all patient data into Patients table
+
+39. Created spGetMedicalPerson sproc to display Medical Person first name, last name, address and phone number 
+for the medical person that was logged in on Patient Vaccinations page using the id of the medical person that logged in.
+Added spGetMedicalPerson sproc to stored procedures script
+
+40. Created spGetVaccinationCentres sproc to list all the vaccination centres in a drop down on the Patient Vaccinations page.
+Added spGetVaccinationCentres sproc to stored procedures script
+
+41. Created spGetVaccinationTypes sproc to list all the vaccination types in a drop down on the Patient Vaccinations page.
+Added spGetVaccinationTypes sproc to stored procedures script
+
+42. Created form  for Patient Vaccinations page
+
+43. created functions to call the sprocs to fill in drop down lists in form.
