@@ -80,7 +80,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `spInsertPatientVaccination`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertPatientVaccination`(
-	IN p_DateTime DATETIME(3), 
+	IN p_DateTime DATETIME, 
     IN p_VaccinationCentreId INT, 
     IN p_MedicalPersonId INT, 
     IN p_PatientId INT, 

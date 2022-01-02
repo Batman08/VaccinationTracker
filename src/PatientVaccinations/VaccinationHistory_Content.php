@@ -6,7 +6,7 @@ $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
 
 <div class="row padBottom10">
     <div class="col-sm-12">
-        <h3><?= $medicalPerson['FirstName'] . ' ' . $medicalPerson['LastName'] . ' - ' . $medicalPerson['Profession']; ?></h3>
+        <h3><i class="fas fa-user"></i> <?= $medicalPerson['FirstName'] . ' ' . $medicalPerson['LastName'] . ' - ' . $medicalPerson['Profession']; ?></h3>
         <div class="text-muted"><?= $medicalPerson['Address'] . ', ' . $medicalPerson['Postcode'] . ', Tel:' . $medicalPerson['Telephone']; ?></div>
     </div>
 </div>
