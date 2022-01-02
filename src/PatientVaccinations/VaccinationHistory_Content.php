@@ -16,7 +16,8 @@ $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th scope="col">Date</th>
+            <th scope="col">#</th>
+            <th scope="col">Date & Time</th>
             <th scope="col">Vaccination Centre</th>
             <th scope="col">Patient Name</th>
             <th scope="col">Vaccination Type</th>
@@ -25,18 +26,12 @@ $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
     <tbody>
         <?php foreach ($vaccinationHistory as $vh) { ?>
             <tr>
+                <td><?= $vh['RowNum'] ?></td>
                 <td><?= $vh['DateTime'] ?></td>
                 <td><?= $vh['VaccinationCentre'] ?></td>
                 <td><?= $vh['PatientName'] ?></td>
                 <td><?= $vh['VaccinationType'] ?></td>
             </tr>
         <?php } ?>
-
-
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
     </tbody>
 </table>

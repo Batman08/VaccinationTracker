@@ -26,7 +26,7 @@ $vaccinationTypes = GetVaccinationTypes();
         <select name="ddlVaccinationCentre" class="form-select" aria-label="select vaccination centre">
             <option selected disabled="disabled">-- Select Vaccination Centre --</option>
                 <?php foreach ($vaccinationCentres as $vaccinationCentre) { ?>
-            <option value="<?= $vaccinationCentre['VaccinationCentreId'] ?>"><?= $vaccinationCentre['VaccinationCentreName'] ?></option>
+            <option value="<?= $vaccinationCentre['VaccinationCentreId'] ?>"><?= $vaccinationCentre['Name'] ?></option>
         <?php } ?>
         </select>
     </div>

@@ -5,6 +5,7 @@ USE `Vaccinations`;
 -- --------------------------------------------------------
 
 DELIMITER $$
+DROP procedure IF EXISTS `spGetUsernames`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetUsernames`()
 BEGIN
     SELECT MedicalPersonId, CONCAT(FirstName , ' ' , LastName , ' (' , Profession , ')') AS Username FROM MedicalPersons ORDER BY FirstName, LastName;
@@ -17,6 +18,7 @@ DELIMITER ;
 -- ------------------------------------------------------
 
 DELIMITER $$
+DROP procedure IF EXISTS `spGetMedicalPerson`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetMedicalPerson`(IN medicalPersonId INT)
 BEGIN
 SELECT * FROM MedicalPersons mp WHERE mp.MedicalPersonId = medicalPersonId;
@@ -29,9 +31,10 @@ DELIMITER ;
 -- -------------------------------------------------------
 
 DELIMITER $$
+DROP procedure IF EXISTS `spGetVaccinationCentres`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationCentres`()
 BEGIN
-SELECT VaccinationCentreId, Name AS VaccinationCentreName FROM VaccinationCentres ORDER BY Name;
+SELECT VaccinationCentreId, Name FROM VaccinationCentres ORDER BY Name;
 END$$
 DELIMITER ;
 
@@ -41,9 +44,10 @@ DELIMITER ;
 -- -------------------------------------------------------
 
 DELIMITER $$
+DROP procedure IF EXISTS `spGetVaccinationTypes`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationTypes`()
 BEGIN
-SELECT * FROM VaccinationTypes;
+SELECT VaccinationTypeId, Name FROM VaccinationTypes ORDER BY Name;
 END$$
 DELIMITER ;
 
@@ -53,9 +57,11 @@ DELIMITER ;
 -- -------------------------------------------
 
 DELIMITER $$
+DROP procedure IF EXISTS `spGetVaccinationHistory`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationHistory`(IN medicalPersonId INT)
 BEGIN
-SELECT pv.DateTime, vc.Name AS VaccinationCentre, CONCAT(p.FirstName , ' ' , p.LastName) AS PatientName, vt.Name AS VaccinationType
+SET @row_number = 0;
+SELECT (@row_number:=@row_number + 1) AS RowNum, DATE_FORMAT(pv.DateTime, "%d %b %Y at %h:%i %p") AS DateTime, vc.Name AS VaccinationCentre, CONCAT(p.FirstName , ' ' , p.LastName) AS PatientName, vt.Name AS VaccinationType
 FROM medicalpersons mp 
 	INNER JOIN patientvaccinations pv ON mp.MedicalPersonId = pv.MedicalPersonId
 	INNER JOIN vaccinationcentres vc ON pv.VaccinationCentreId = vc.VaccinationCentreId
