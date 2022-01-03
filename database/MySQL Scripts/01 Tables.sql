@@ -25,7 +25,7 @@ CREATE TABLE `patients` (
    `PatientUniqueId` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
    `FirstName` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
    `LastName` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-   `Age` int NOT NULL,
+   `DateofBirth` date NOT NULL,
    `Address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
    `Postcode` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
    `Telephone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
