@@ -20,9 +20,10 @@ $vaccinationTypes = GetVaccinationTypes();
 
 <form action="VaccinatePatient_Save.php" method="post">
 
+    <!-- Choose Vaccination Centre -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            Choose Vaccination Centre:
+            <label for="ddlVaccinationCentre">Choose Vaccination Centre:</label>
         </div>
         <div class="col-md-9">
             <select name="ddlVaccinationCentre" class="form-select" aria-label="select vaccination centre" required>
@@ -33,51 +34,108 @@ $vaccinationTypes = GetVaccinationTypes();
             </select>
         </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="vaccination_datetime">Date</label>
-        <input type="datetime-local" class="form-control" name="txtDateTime" required>
-    </div>
-    <div class="form-group padBottom10">
-        <label for="vaccination_type">Vaccination Type</label>
-        <select name="ddlVaccinationType" class="form-select" aria-label="select user" required>
-            <option value="">-- Select Vaccination Type --</option>
-            <?php foreach ($vaccinationTypes as $vaccinationType) { ?>
-                <option value="<?= $vaccinationType['VaccinationTypeId'] ?>"><?= $vaccinationType['Name'] ?></option>
-            <?php } ?>
-        </select>
+
+    <!-- Date -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtDateTime">Date:</label>
+        </div>
+        <div class="col-md-9">
+            <input type="datetime-local" class="form-control" name="txtDateTime" required>
+        </div>
     </div>
 
-    <hr/>
-    
-    <div class="form-group padBottom10">
-        <label for="patient_first_name">Patient Identifier</label>
-        <input type="text" class="form-control" name="txtPatientUniqueId" placeholder="Enter Unique Patient Identifier" maxlength="256" required>
+    <!-- Vaccination Type -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="ddlVaccinationType">Vaccination Type:</label>
+        </div>
+        <div class="col-md-9">
+            <select name="ddlVaccinationType" class="form-select" aria-label="select user" required>
+                <option value="">-- Select Vaccination Type --</option>
+                <?php foreach ($vaccinationTypes as $vaccinationType) { ?>
+                    <option value="<?= $vaccinationType['VaccinationTypeId'] ?>"><?= $vaccinationType['Name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="patient_first_name">Patient First Name</label>
-        <input type="text" class="form-control" name="txtPatientFirstName" placeholder="Enter Patient First Name" maxlength="256" required>
+
+    <hr />
+
+    <!-- Patient Identifier -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientUniqueId">Patient Identifier:</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="txtPatientUniqueId" placeholder="Enter Unique Patient Identifier" maxlength="256" required>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="patient_last_name">Patient Last Name</label>
-        <input type="text" class="form-control" name="txtPatientLastName" placeholder="Enter Patient Last Name" maxlength="256" required>
+
+    <!-- Patient First Name -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientFirstName">Patient First Name:</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="txtPatientFirstName" placeholder="Enter Patient First Name" maxlength="256" required>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="patient_dob">Date of Birth</label>
-        <input type="date" class="form-control" name="txtPatientDOB" required>
+
+    <!-- Patient Last Name -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientLastName">Patient First Name:</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="txtPatientLastName" placeholder="Enter Patient Last Name" maxlength="256" required>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="patient_address">Patient Address</label>
-        <input type="text" class="form-control" name="txtPatientAddress" placeholder="Enter Patient Address" maxlength="256" required>
+
+    <!-- Date of Birth -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientDOB">Date of Birth:</label>
+        </div>
+        <div class="col-md-9">
+            <input type="date" class="form-control" name="txtPatientDOB" required>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="patient_postcode">Patient Postcode</label>
-        <input type="text" class="form-control" name="txtPatientPostcode" placeholder="Enter Patient Postcode" maxlength="10" required>
+
+    <!-- Patient Address -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientAddress">Patient Address</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="txtPatientAddress" placeholder="Enter Patient Address" maxlength="256" required>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <label for="patient_phone_number">Patient Phone Number</label>
-        <input type="tel" class="form-control" name="txtPatientTelephone" placeholder="Enter Patient Phone Number" maxlength="15" required>
+
+    <!-- Patient Postcode -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientPostcode">Patient Postcode</label>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="txtPatientPostcode" placeholder="Enter Patient Postcode" maxlength="10" required>
+        </div>
     </div>
-    <div class="form-group padBottom10">
-        <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-user-plus"></i> Add Patient</button>
+
+    <!-- Patient Phone Number -->
+    <div class="row padBottom10">
+        <div class="col-md-3">
+            <label for="txtPatientTelephone">Patient Phone Number</label>
+        </div>
+        <div class="col-md-9">
+            <input type="tel" class="form-control" name="txtPatientTelephone" placeholder="Enter Patient Phone Number" maxlength="15" required>
+        </div>
+    </div>
+
+    <!-- Add Patient Button -->
+    <div class="row padBottom10" style="margin-top: 20px;">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-user-plus"></i> Add Patient</button>
+        </div>
     </div>
 </form>
