@@ -32,6 +32,9 @@ begin
 	update top(1) PatientsSample set Age = 12 + ceiling(rand()*90) where age is null
 end
 
+-- Convert Age to Date of Birth
+update Patients set DateofBirth = DATEADD(year, -Age, CAST( GETDATE() AS Date))
+
 -- Patient Unique Id
 while (select count(*) from PatientsSample where PatientUniqueId is null) > 0
 begin
