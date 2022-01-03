@@ -82,7 +82,7 @@ created basic login form.
 34. https://www.sqlines.com/online
 Converted t-sql scripts to mysql
 
-35. In notepadd++ had to add ; at the end of all insert statements so it worked in mysql
+35. In notepadd++ had to add semicolon at the end of all insert statements so it worked in mysql
 
 36. Created GetUsernames function to return GetData function that called the spGetMedicalPersons sproc and returned list of 
 25 medical persons in dropdown list. Added spGetMedicalPersons sproc to stored procedures script
@@ -105,4 +105,42 @@ Added spGetVaccinationTypes sproc to stored procedures script
 
 42. Created form  for Patient Vaccinations page
 
-43. created functions to call the sprocs to fill in drop down lists in form.
+43. Created master.css to hold all styles
+
+44. Added padBottom10 and padBottom30 styles for form inputs
+
+45. Created function GetMedicalPersonName to return value of spGetMedicalPerson sproc
+
+46. Created functions to call the sprocs to fill in drop down lists in form.
+
+47. Added Vaccinationn History page that will show a list of previous vaccinations for whatever medical person logged in. Will display Date & Time, Vaccination Centre, Patient Name and Vaccination Type
+
+48. Created sproc that took all the values from form and took values as parameters that checked if a new patient had to be added and record the vaccination data or just update the current vaccination data
+for the existing user
+
+49. Created function in database helpers to call spSavePatientVaccination sproc to insert or update a patient and record the vaccination
+
+50. Found a bug with GetData function for inserting a sproc as no data was being returned, so I created a ExecuteSproc function to just run queries and not check for any data being returned.
+
+51. Changed GetData function to work for inserting queries using isDataReturned variable to check if it should return data or not so that I didn't need ExecuteSproc function and changed GetData function name to GetDatabase
+
+52. Another bug was with patient age which is the incorrect field I generated data for but should'e been data for date of birth
+
+53. In Patients table created new column date of birth as date
+
+54. To fix this issue I took the current date - patient age giving the patient date of birth
+
+55. Updated the rows in Patients table
+
+56. Removed age column
+
+57. Added date of birth sql to Generate Random data script
+
+58. Generated Patients table script
+
+59. Generated Patients data script
+
+60. https://www.sqlines.com/online
+Converted Patients table and Patients data t-sql scripts to mysql
+
+61. Used notepadd++ to add a semicolon at the end of each insert statement for Paients table data
