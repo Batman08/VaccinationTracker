@@ -16,54 +16,65 @@ function OpenConnection()
     return $conn;
 }
 
-function GetDatabase($sql, $isDataReturned)
+function CallDatabase($sql, $isDataReturned)
 {
     try {
         $conn = OpenConnection();
 
         if ($isDataReturned) {
             $result = mysqli_query($conn, $sql);
-            if ($result == FALSE)
+
+            if ($result == false) {
                 die('Invalid query: ' . mysqli_error($conn));
+            }
+
+            // we have data so store in variable then return
 
             while ($row = mysqli_fetch_array($result)) {
                 $rows[] = $row;
             }
-            mysqli_free_result($result);
+
+            mysqli_free_result($result); // free memory associated with result
             $conn->close();
             return $rows;
         } else {
-            mysqli_query($conn, $sql);
+            $result = mysqli_query($conn, $sql);
+            if ($result == false)
+            {
+                die('Invalid query: ' . mysqli_error($conn));
+            }
+
             $conn->close();
         }
     } catch (Exception $e) {
+        $conn->close();
         echo "Error!" . $e->getMessage();
     }
 }
 
 function GetUsernames()
 {
-    return GetDatabase("call spGetUsernames()", true);
+    return CallDatabase("call spGetUsernames()", true);
 }
 
 function GetMedicalPerson($p_MedicalPersonId)
 {
-    return GetDatabase("call spGetMedicalPerson('$p_MedicalPersonId')", true);
+    return CallDatabase("call spGetMedicalPerson('$p_MedicalPersonId')", true);
 }
 
 function GetVaccinationCentres()
 {
-    return GetDatabase("call spGetVaccinationCentres()", true);
+    return CallDatabase("call spGetVaccinationCentres()", true);
 }
 
 function GetVaccinationTypes()
 {
-    return GetDatabase("call spGetVaccinationTypes()", true);
+    return CallDatabase("call spGetVaccinationTypes()", true);
 }
 
 function GetVaccinationHistory($p_MedicalPersonId)
 {
-    return GetDatabase("call spGetVaccinationHistory('$p_MedicalPersonId')", true);
+    return CallDatabase("call spGetVaccinationHistory('$p_MedicalPersonId')", true);
 }
 
 function SavePatientVaccination(
@@ -79,7 +90,7 @@ function SavePatientVaccination(
     $p_PatientPostcode,
     $p_PatientTelephone
 ) {
-    return GetDatabase("call spSavePatientVaccination('$p_MedicalPersonId', '$p_VaccinationCentreId', '$p_DateTime', '$p_VaccinationTypeId', 
+    return CallDatabase("call spSavePatientVaccination('$p_MedicalPersonId', '$p_VaccinationCentreId', '$p_DateTime', '$p_VaccinationTypeId', 
                                                        '$p_PatientUniqueId', '$p_PatientFirstName', '$p_PatientLastName', '$p_PatientDOB', '$p_PatientAddress', 
                                                        '$p_PatientPostcode', '$p_PatientTelephone')", false);
 }
