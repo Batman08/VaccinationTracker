@@ -16,36 +16,26 @@ function OpenConnection()
     return $conn;
 }
 
-function GetData($sql)
+function GetDatabase($sql, $isDataReturned)
 {
     try {
         $conn = OpenConnection();
-        $result = mysqli_query($conn, $sql);
-        if ($result == FALSE)
-            die('Invalid query: ' . mysqli_error($conn));
 
-        while ($row = mysqli_fetch_array($result)) {
-            $rows[] = $row;
+        if ($isDataReturned) {
+            $result = mysqli_query($conn, $sql);
+            if ($result == FALSE)
+                die('Invalid query: ' . mysqli_error($conn));
+
+            while ($row = mysqli_fetch_array($result)) {
+                $rows[] = $row;
+            }
+            mysqli_free_result($result);
+            $conn->close();
+            return $rows;
+        } else {
+            mysqli_query($conn, $sql);
+            $conn->close();
         }
-        mysqli_free_result($result);
-        $conn->close();
-    } catch (Exception $e) {
-        echo "Error!" . $e->getMessage();
-    }
-
-    return $rows;
-}
-
-function ExecuteSproc($sql)
-{
-    try {
-        $conn = OpenConnection();
-        mysqli_query($conn, $sql);
-        // if ($result == FALSE)
-        //     die('Invalid query: ' . mysqli_error($conn));
-        
-        // mysqli_free_result($result);
-        $conn->close();
     } catch (Exception $e) {
         echo "Error!" . $e->getMessage();
     }
@@ -53,32 +43,43 @@ function ExecuteSproc($sql)
 
 function GetUsernames()
 {
-    return GetData("call spGetUsernames()");
+    return GetDatabase("call spGetUsernames()", true);
 }
 
 function GetMedicalPerson($p_MedicalPersonId)
 {
-    return GetData("call spGetMedicalPerson('$p_MedicalPersonId')");
+    return GetDatabase("call spGetMedicalPerson('$p_MedicalPersonId')", true);
 }
 
 function GetVaccinationCentres()
 {
-    return GetData("call spGetVaccinationCentres()");
+    return GetDatabase("call spGetVaccinationCentres()", true);
 }
 
 function GetVaccinationTypes()
 {
-    return GetData("call spGetVaccinationTypes()");
+    return GetDatabase("call spGetVaccinationTypes()", true);
 }
 
 function GetVaccinationHistory($p_MedicalPersonId)
 {
-    return GetData("call spGetVaccinationHistory('$p_MedicalPersonId')");
+    return GetDatabase("call spGetVaccinationHistory('$p_MedicalPersonId')", true);
 }
 
-function SavePatientVaccination($p_MedicalPersonId, $p_VaccinationCentreId, $p_DateTime, $p_VaccinationTypeId, 
-                                $p_PatientUniqueId, $p_PatientFirstName, $p_PatientLastName, $p_PatientDOB, $p_PatientAddress, $p_PatientPostcode, $p_PatientTelephone)
-{
-    return ExecuteSproc("call spSavePatientVaccination('$p_MedicalPersonId', '$p_VaccinationCentreId', '$p_DateTime', '$p_VaccinationTypeId', 
-                                                       '$p_PatientUniqueId', '$p_PatientFirstName', '$p_PatientLastName', '$p_PatientDOB', '$p_PatientAddress', '$p_PatientPostcode', '$p_PatientTelephone')");
+function SavePatientVaccination(
+    $p_MedicalPersonId,
+    $p_VaccinationCentreId,
+    $p_DateTime,
+    $p_VaccinationTypeId,
+    $p_PatientUniqueId,
+    $p_PatientFirstName,
+    $p_PatientLastName,
+    $p_PatientDOB,
+    $p_PatientAddress,
+    $p_PatientPostcode,
+    $p_PatientTelephone
+) {
+    return GetDatabase("call spSavePatientVaccination('$p_MedicalPersonId', '$p_VaccinationCentreId', '$p_DateTime', '$p_VaccinationTypeId', 
+                                                       '$p_PatientUniqueId', '$p_PatientFirstName', '$p_PatientLastName', '$p_PatientDOB', '$p_PatientAddress', 
+                                                       '$p_PatientPostcode', '$p_PatientTelephone')", false);
 }
