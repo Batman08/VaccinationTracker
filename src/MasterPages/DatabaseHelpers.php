@@ -36,6 +36,21 @@ function GetData($sql)
     return $rows;
 }
 
+function ExecuteSproc($sql)
+{
+    try {
+        $conn = OpenConnection();
+        mysqli_query($conn, $sql);
+        // if ($result == FALSE)
+        //     die('Invalid query: ' . mysqli_error($conn));
+        
+        // mysqli_free_result($result);
+        $conn->close();
+    } catch (Exception $e) {
+        echo "Error!" . $e->getMessage();
+    }
+}
+
 function GetUsernames()
 {
     return GetData("call spGetUsernames()");
@@ -61,7 +76,9 @@ function GetVaccinationHistory($p_MedicalPersonId)
     return GetData("call spGetVaccinationHistory('$p_MedicalPersonId')");
 }
 
-function InsertPatientVaccination($p_DateTime, $p_VaccinationCentreId, $p_MedicalPersonId, $p_PatientId, $p_VaccinationTypeId)
+function SavePatientVaccination($p_MedicalPersonId, $p_VaccinationCentreId, $p_DateTime, $p_VaccinationTypeId, 
+                                $p_PatientUniqueId, $p_PatientFirstName, $p_PatientLastName, $p_PatientDOB, $p_PatientAddress, $p_PatientPostcode, $p_PatientTelephone)
 {
-    return GetData("call spInsertPatientVaccination('$p_DateTime', '$p_VaccinationCentreId', '$p_MedicalPersonId', '$p_PatientId', '$p_VaccinationTypeId')");
+    return ExecuteSproc("call spSavePatientVaccination('$p_MedicalPersonId', '$p_VaccinationCentreId', '$p_DateTime', '$p_VaccinationTypeId', 
+                                                       '$p_PatientUniqueId', '$p_PatientFirstName', '$p_PatientLastName', '$p_PatientDOB', '$p_PatientAddress', '$p_PatientPostcode', '$p_PatientTelephone')");
 }

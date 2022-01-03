@@ -73,20 +73,46 @@ END$$
 DELIMITER ;
 
 
--- [spInsertPatientVaccination]
--- This will insert a new patient into PatientVaccinations
--- -------------------------------------------------------
+-- [spSavePatientVaccination]
+-- This will insert or update a patient and record the vaccination
+-- ---------------------------------------------------------------
 
-DROP procedure IF EXISTS `spInsertPatientVaccination`;
+DROP procedure IF EXISTS `spSavePatientVaccination`;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertPatientVaccination`(
-	IN p_DateTime DATETIME, 
-    IN p_VaccinationCentreId INT, 
-    IN p_MedicalPersonId INT, 
-    IN p_PatientId INT, 
-    IN p_VaccinationTypeId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spSavePatientVaccination`(
+	IN p_MedicalPersonId INT,
+    IN p_VaccinationCentreId INT,
+    IN p_DateTime DATETIME, 
+    IN p_VaccinationTypeId INT,
+    IN p_PatientUniqueId VARCHAR(256), 
+    IN p_PatientFirstName VARCHAR(256),
+    IN p_PatientLastName VARCHAR(256),
+    IN p_PatientDOB DATETIME,
+    IN p_PatientAddress VARCHAR(256),
+    IN p_PatientPostcode VARCHAR(10),
+    IN p_PatientTelephone VARCHAR(15)
+    )
 BEGIN
+
+    -- get patient from unique id
+    SELECT PatientId INTO @PatientId FROM Patients WHERE PatientUniqueId = p_PatientUniqueId;
+
+    IF @PatientId IS NULL THEN
+        -- patient does not exist so we'll insert
+        INSERT INTO Patients(PatientUniqueId, FirstName, LastName, DateofBirth, Address, Postcode, Telephone)
+        VALUES(p_PatientUniqueId, p_PatientFirstName, p_PatientLastName, p_PatientDOB, p_PatientAddress, p_PatientPostcode, p_PatientTelephone);
+
+        SET @PatientId := LAST_INSERT_ID();
+    ELSE
+        -- patient exists so we'll update
+        UPDATE Patients 
+        SET FirstName = p_PatientFirstName, LastName = p_PatientLastName, DateofBirth = p_PatientDOB, Address = p_PatientAddress, Postcode = p_PatientPostcode, Telephone = p_PatientTelephone
+        WHERE PatientId = @PatientId;
+    END IF;
+
+
+    -- insert patient vaccination
 	INSERT INTO PatientVaccinations(DateTime, VaccinationCentreId, MedicalPersonId, PatientId, VaccinationTypeId)
-	VALUES (p_DateTime, p_VaccinationCentreId, p_MedicalPersonId, p_PatientId, p_VaccinationTypeId);
+	VALUES (p_DateTime, p_VaccinationCentreId, p_MedicalPersonId, @PatientId, p_VaccinationTypeId);
 END$$
 DELIMITER ;
