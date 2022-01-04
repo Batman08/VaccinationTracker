@@ -99,3 +99,8 @@ function GetReportVaccinationsByCentre()
 {
     return CallDatabase("call spGetReportVaccinationsByCentre()", true);
 }
+
+function GetReportPatientsByVaccinationType()
+{
+    return CallDatabase("call spGetReportPatientsByVaccinationType()", true);
+}
