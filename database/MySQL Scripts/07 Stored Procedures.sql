@@ -126,10 +126,27 @@ DROP procedure IF EXISTS `spGetReportVaccinationsByCentre`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportVaccinationsByCentre`()
 BEGIN
-	SELECT vc.Name, vc.Address, vc.Postcode, vc.Telephone, Count(pv.VaccinationCentreId) AS NumberofVaccinations
+	SELECT vc.Name, vc.Address, vc.Postcode, vc.Telephone, COUNT(pv.VaccinationCentreId) AS NumberofVaccinations
 	FROM PatientVaccinations pv
 		INNER JOIN VaccinationCentres vc ON pv.VaccinationCentreId = vc.VaccinationCentreId
 	GROUP BY vc.VaccinationCentreId
 	ORDER BY NumberofVaccinations DESC;
+END$$
+DELIMITER ;
+
+
+-- [spGetVaccinationsByCentre]
+-- This will get a list of vaccinations carried out by each centre
+-- ---------------------------------------------------------------
+
+DROP procedure IF EXISTS `spGetReportPatientsByVaccinationType`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportPatientsByVaccinationType`()
+BEGIN
+	SELECT vt.Name, COUNT(pv.VaccinationTypeId) AS NumberofPatients
+	FROM PatientVaccinations pv
+		INNER JOIN VaccinationTypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
+	GROUP BY vt.VaccinationTypeId
+	ORDER BY NumberofPatients DESC;
 END$$
 DELIMITER ;

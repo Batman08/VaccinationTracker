@@ -36,12 +36,13 @@
 <br />
 
 <?php
-$reportType = "3";
+$reportType = "2";
 
 switch ($reportType) {
     case "1":
         break;
     case "2":
+        include("ReportType_2.php");
         break;
     case "3":
         include("ReportType_3.php");
