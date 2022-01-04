@@ -14,7 +14,6 @@ $vaccinationTypes = GetVaccinationTypes();
 
 <div class="row padBottom30">
     <div class="col-sm-12" style="text-align: right;">
-        <a href="/AdminReports/AdministrationReports.php" class="btn btn-primary"><i class="fas fa-file-medical"></i> View Reports</a>
         <a href="/PatientVaccinations/VaccinationHistory.php" class="btn btn-success"><i class="fas fa-book-medical"></i> Vaccination History</a>
     </div>
 </div>
