@@ -1,6 +1,11 @@
 <?php
+$totalVaccinations = GetTotalVaccinations();
 $reportData = GetReportVaccinationsByCentre();
 ?>
+
+<div class="alert alert-primary" role="alert" style="font-weight: bold;">
+    Total Number of Vaccinations: <?= $totalVaccinations ?>
+</div>
 
 <table class="table table-striped table-hover">
     <thead>

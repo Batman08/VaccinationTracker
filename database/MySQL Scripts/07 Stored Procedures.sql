@@ -143,10 +143,38 @@ DROP procedure IF EXISTS `spGetReportPatientsByVaccinationType`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportPatientsByVaccinationType`()
 BEGIN
-	SELECT vt.Name, COUNT(pv.VaccinationTypeId) AS NumberofPatients
+	SELECT COUNT(*) INTO @TotalPatients FROM Patients;
+
+	SELECT vt.Name, COUNT(pv.VaccinationTypeId) AS NumberofPatients, COUNT(pv.VaccinationTypeId) / @TotalPatients * 100 AS PercentOfPatients
 	FROM PatientVaccinations pv
 		INNER JOIN VaccinationTypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
 	GROUP BY vt.VaccinationTypeId
 	ORDER BY NumberofPatients DESC;
+END$$
+DELIMITER ;
+
+
+-- [spGetTotalPatients]
+-- This will get total number of patients
+-- --------------------------------------
+
+DROP procedure IF EXISTS `spGetTotalPatients`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetTotalPatients`()
+BEGIN
+	SELECT COUNT(*) AS TotalPatients FROM Patients;
+END$$
+DELIMITER ;
+
+
+-- [spGetTotalVaccinations]
+-- This will get total number of vaccinations
+-- ------------------------------------------
+
+DROP procedure IF EXISTS `spGetTotalVaccinations`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetTotalVaccinations`()
+BEGIN
+	SELECT COUNT(*) AS TotalVaccinations FROM PatientVaccinations;
 END$$
 DELIMITER ;
