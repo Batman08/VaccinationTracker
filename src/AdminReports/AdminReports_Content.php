@@ -32,4 +32,19 @@
     </div>
 </div>
 
-<hr/>
+<br />
+<br />
+
+<?php
+$reportType = "3";
+
+switch ($reportType) {
+    case "1":
+        break;
+    case "2":
+        break;
+    case "3":
+        include("ReportType_3.php");
+        break;
+}
+?>

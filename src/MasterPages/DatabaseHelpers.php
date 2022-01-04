@@ -94,3 +94,8 @@ function SavePatientVaccination(
                                                        '$p_PatientUniqueId', '$p_PatientFirstName', '$p_PatientLastName', '$p_PatientDOB', '$p_PatientAddress', 
                                                        '$p_PatientPostcode', '$p_PatientTelephone')", false);
 }
+
+function GetVaccinationsByCentreReport()
+{
+    return CallDatabase("call spGetVaccinationsByCentre()", true);
+}

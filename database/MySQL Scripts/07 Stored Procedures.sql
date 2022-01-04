@@ -116,3 +116,20 @@ BEGIN
 	VALUES (p_DateTime, p_VaccinationCentreId, p_MedicalPersonId, @PatientId, p_VaccinationTypeId);
 END$$
 DELIMITER ;
+
+
+-- [spGetVaccinationsByCentre]
+-- This will get a list of vaccinations carried out by each centre
+-- ---------------------------------------------------------------
+
+DROP procedure IF EXISTS `spGetVaccinationsByCentre`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationsByCentre`()
+BEGIN
+	SELECT vc.Name, vc.Address, vc.Postcode, vc.Telephone, Count(pv.VaccinationCentreId) AS NumberofVaccinations
+	FROM PatientVaccinations pv
+		INNER JOIN VaccinationCentres vc ON pv.VaccinationCentreId = vc.VaccinationCentreId
+	GROUP BY vc.VaccinationCentreId
+	ORDER BY NumberofVaccinations DESC;
+END$$
+DELIMITER ;
