@@ -105,6 +105,11 @@ function GetReportPatientsByVaccinationType()
     return CallDatabase("call spGetReportPatientsByVaccinationType()", true);
 }
 
+function GetReportCovidVaccinationsByArea()
+{
+    return CallDatabase("call spGetReportCovidVaccinationsByArea()", true);
+}
+
 function GetTotalPatients()
 {
     $total = CallDatabase("call spGetTotalPatients()", true);
@@ -115,4 +120,10 @@ function GetTotalVaccinations()
 {
     $total = CallDatabase("call spGetTotalVaccinations()", true);
     return $total[0]['TotalVaccinations'];
+}
+
+function GetTotalCovidVaccinations()
+{
+    $total = CallDatabase("call spGetTotalCovidVaccinations()", true);
+    return $total[0]['TotalCovidVaccinations'];
 }

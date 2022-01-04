@@ -27,7 +27,7 @@ $reportData = GetReportVaccinationsByCentre();
                     <span class="text-muted"><i class="fas fa-phone-alt fa-fw"></i> <?= $i['Telephone'] ?></span>
                 </td>
                 <td>
-                <span style="font-size: larger;"><b><?= $i['NumberofVaccinations'] ?></b></span>
+                <span style="font-size: larger;"><b><?= $i['NumberOfVaccinations'] ?></b></span>
                 </td>
             </tr>
         <?php } ?>

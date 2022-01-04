@@ -118,7 +118,7 @@ END$$
 DELIMITER ;
 
 
--- [spGetVaccinationsByCentre]
+-- [spGetReportVaccinationsByCentre]
 -- This will get a list of vaccinations carried out by each centre
 -- ---------------------------------------------------------------
 
@@ -126,16 +126,16 @@ DROP procedure IF EXISTS `spGetReportVaccinationsByCentre`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportVaccinationsByCentre`()
 BEGIN
-	SELECT vc.Name, vc.Address, vc.Postcode, vc.Telephone, COUNT(pv.VaccinationCentreId) AS NumberofVaccinations
+	SELECT vc.Name, vc.Address, vc.Postcode, vc.Telephone, COUNT(pv.VaccinationCentreId) AS NumberOfVaccinations
 	FROM PatientVaccinations pv
 		INNER JOIN VaccinationCentres vc ON pv.VaccinationCentreId = vc.VaccinationCentreId
 	GROUP BY vc.VaccinationCentreId
-	ORDER BY NumberofVaccinations DESC;
+	ORDER BY NumberOfVaccinations DESC;
 END$$
 DELIMITER ;
 
 
--- [spGetVaccinationsByCentre]
+-- [spGetReportPatientsByVaccinationType]
 -- This will get a list of vaccinations carried out by each centre
 -- ---------------------------------------------------------------
 
@@ -145,11 +145,30 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportPatientsByVaccinationTyp
 BEGIN
 	SELECT COUNT(*) INTO @TotalPatients FROM Patients;
 
-	SELECT vt.Name, COUNT(pv.VaccinationTypeId) AS NumberofPatients, COUNT(pv.VaccinationTypeId) / @TotalPatients * 100 AS PercentOfPatients
+	SELECT vt.Name, COUNT(pv.VaccinationTypeId) AS NumberOfPatients, COUNT(pv.VaccinationTypeId) / @TotalPatients * 100 AS PercentOfPatients
 	FROM PatientVaccinations pv
 		INNER JOIN VaccinationTypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
 	GROUP BY vt.VaccinationTypeId
-	ORDER BY NumberofPatients DESC;
+	ORDER BY NumberOfPatients DESC;
+END$$
+DELIMITER ;
+
+
+-- [spGetReportCovidVaccinationsByArea]
+-- This will get total number of covid vaccinations for each area
+-- --------------------------------------------------------------
+
+DROP procedure IF EXISTS `spGetReportCovidVaccinationsByArea`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportCovidVaccinationsByArea`()
+BEGIN
+	SELECT LEFT(Postcode,LOCATE(' ',Postcode) - 1) AS Area, COUNT(*) AS NumberOfCovidVaccinations
+	FROM Patients p
+		INNER JOIN PatientVaccinations pv on p.PatientId = pv.PatientId
+		INNER JOIN vaccinationtypes vt on pv.VaccinationTypeId = vt.VaccinationTypeId
+	WHERE vt.name LIKE "COVID-19%"
+	GROUP BY Area
+	ORDER BY NumberOfCovidVaccinations DESC;
 END$$
 DELIMITER ;
 
@@ -176,5 +195,21 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetTotalVaccinations`()
 BEGIN
 	SELECT COUNT(*) AS TotalVaccinations FROM PatientVaccinations;
+END$$
+DELIMITER ;
+
+
+-- [spGetTotalCovidVaccinations]
+-- This will get total number of covid vaccinations
+-- ------------------------------------------------
+
+DROP procedure IF EXISTS `spGetTotalCovidVaccinations`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetTotalCovidVaccinations`()
+BEGIN
+	SELECT COUNT(*) AS TotalCovidVaccinations
+	FROM PatientVaccinations pv
+		INNER JOIN VaccinationTypes vt on pv.VaccinationTypeId = vt.VaccinationTypeId
+	WHERE vt.name LIKE "COVID-19%";
 END$$
 DELIMITER ;

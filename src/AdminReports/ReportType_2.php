@@ -22,7 +22,7 @@ $reportData = GetReportPatientsByVaccinationType();
                     <span style="font-size: larger;"><?= $i['Name'] ?></span>
                 </td>
                 <td>
-                    <span style="font-size: larger;"><?= $i['NumberofPatients'] ?></span>
+                    <span style="font-size: larger;"><?= $i['NumberOfPatients'] ?></span>
                 </td>
                 <td>
                     <span style="font-size: larger;"><?= number_format((float)$i['PercentOfPatients'], 0, '.', '') ?>%</span>

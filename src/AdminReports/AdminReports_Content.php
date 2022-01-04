@@ -1,7 +1,3 @@
-<?php
-// echo "Reports";
-?>
-
 <div class="row">
     <div class="col-sm">
         <div class="card">
@@ -36,10 +32,11 @@
 <br />
 
 <?php
-$reportType = "3";
+$reportType = "1";
 
 switch ($reportType) {
     case "1":
+        include("ReportType_1.php");
         break;
     case "2":
         include("ReportType_2.php");
