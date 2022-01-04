@@ -165,7 +165,7 @@ BEGIN
 	SELECT LEFT(Postcode,LOCATE(' ',Postcode) - 1) AS Area, COUNT(*) AS NumberOfCovidVaccinations
 	FROM Patients p
 		INNER JOIN PatientVaccinations pv on p.PatientId = pv.PatientId
-		INNER JOIN vaccinationtypes vt on pv.VaccinationTypeId = vt.VaccinationTypeId
+		INNER JOIN VaccinationTypes vt on pv.VaccinationTypeId = vt.VaccinationTypeId
 	WHERE vt.name LIKE "COVID-19%"
 	GROUP BY Area
 	ORDER BY NumberOfCovidVaccinations DESC;
