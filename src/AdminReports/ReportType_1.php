@@ -11,7 +11,9 @@ Total Number of Covid Vaccinations: <?= $totalCovidVaccinations ?>
     <thead>
         <tr>
             <th scope="col">Area</th>
-            <th scope="col">Number of Covid Vaccinations</th>
+            <th scope="col">Total Administered</th>
+            <th scope="col">Vaccine</th>
+            <th scope="col">Number Administered</th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +23,13 @@ Total Number of Covid Vaccinations: <?= $totalCovidVaccinations ?>
                     <span style="font-size: larger;"><?= $i['Area'] ?></span>
                 </td>
                 <td>
-                    <span style="font-size: larger;"><?= $i['NumberOfCovidVaccinations'] ?></span>
+                    <span style="font-size: larger;"><?= $i['TotalVax'] ?></span>
+                </td>
+                <td>
+                    <span style="font-size: larger;"><?= $i['Vaccine'] ?></span>
+                </td>
+                <td>
+                    <span style="font-size: larger;"><?= $i['NumVaxByArea'] ?></span>
                 </td>
             </tr>
         <?php } ?>

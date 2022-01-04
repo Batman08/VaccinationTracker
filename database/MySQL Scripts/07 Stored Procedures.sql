@@ -155,20 +155,45 @@ DELIMITER ;
 
 
 -- [spGetReportCovidVaccinationsByArea]
--- This will get total number of covid vaccinations for each area
--- --------------------------------------------------------------
+-- This will get the total number of covid vaccinations then will brake down the 4 different types of covid vaccines and number of those given
+-- -------------------------------------------------------------------------------------------------------------------------------------------
 
 DROP procedure IF EXISTS `spGetReportCovidVaccinationsByArea`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportCovidVaccinationsByArea`()
 BEGIN
-	SELECT LEFT(Postcode,LOCATE(' ',Postcode) - 1) AS Area, COUNT(*) AS NumberOfCovidVaccinations
+	-- creates a temporary table that gets the area, vaccine type, total for each vaccicne type for each area 
+    -- and adds a column for the total number of covid vaccinations
+	CREATE TEMPORARY TABLE Temp_AreaVaxDetails
+	SELECT 
+		SUBSTRING_INDEX(p.Address, ', ', -1) AS Area, 
+		vt.name AS Vaccine, 
+		COUNT(*) AS NumVaxByArea,
+		0 AS TotalVax
 	FROM Patients p
-		INNER JOIN PatientVaccinations pv on p.PatientId = pv.PatientId
-		INNER JOIN VaccinationTypes vt on pv.VaccinationTypeId = vt.VaccinationTypeId
+		INNER JOIN PatientVaccinations pv ON p.PatientId = pv.PatientId
+		INNER JOIN vaccinationtypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
 	WHERE vt.name LIKE "COVID-19%"
-	GROUP BY Area
-	ORDER BY NumberOfCovidVaccinations DESC;
+	GROUP BY Area, vt.VaccinationTypeId;
+	
+    
+    -- created Temp_AreaVaxQty temporary table to hold the total number of covid vaccinations for each area
+    -- added an index to this table to make the query run faster from 9 seconds to 0 seconds
+	CREATE TEMPORARY TABLE Temp_AreaVaxQty
+	(INDEX area_index (Area), Qty INT)
+	SELECT Area, SUM(NumVaxByArea) AS Qty FROM Temp_AreaVaxDetails GROUP BY Area;
+	
+    -- updates values in Temp_AreaVaxDetails table using the values from Temp_AreaVaxQty table making it fast 
+    -- as it doesn't need to query to get the values it needs beacuse of the Temp_AreaVaxQty table having the data already
+	UPDATE Temp_AreaVaxDetails t1
+		INNER JOIN Temp_AreaVaxQty t2 ON t1.Area = t2.Area
+	SET t1.TotalVax = t2.Qty;
+	
+	SELECT * FROM Temp_AreaVaxDetails ORDER BY TotalVax DESC, NumVaxByArea DESC, Vaccine;
+	
+    -- delete temporary tables as they are no longer required
+	DROP TEMPORARY TABLE Temp_AreaVaxDetails;
+	DROP TEMPORARY TABLE Temp_AreaVaxQty;
 END$$
 DELIMITER ;
 
