@@ -14,7 +14,10 @@ $usernames = GetUsernames();
                     <div class="form-group">
                         <label for="username">Username</label>
                         <select name="txtUsername" class="form-select" aria-label="select user">
-                            <option selected disabled="disabled">-- Select User --</option>
+                            <option selected disabled="disabled">-- Select Administrator --</option>
+                            <option value="DemoAdministrator">Demo Administrator</option>
+                            <option disabled="disabled"></option>
+                            <option disabled="disabled">-- Select Vaccinator --</option>
                                 <?php foreach ($usernames as $username) { ?>
                             <option value="<?= $username['MedicalPersonId'] ?>"><?= $username['Username'] ?></option>
                         <?php } ?>
