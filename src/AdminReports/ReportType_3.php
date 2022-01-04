@@ -1,5 +1,5 @@
 <?php
-$vaccinationsByCentreReport = GetVaccinationsByCentreReport();
+$reportData = GetReportVaccinationsByCentre();
 ?>
 
 <table class="table table-striped table-hover">
@@ -10,7 +10,7 @@ $vaccinationsByCentreReport = GetVaccinationsByCentreReport();
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($vaccinationsByCentreReport as $i) { ?>
+        <?php foreach ($reportData as $i) { ?>
             <tr>
                 <td>
                     <span style="font-size: larger;"><b><i class="fas fa-clinic-medical fa-fw"></i> <?= $i['Name'] ?></b></span>

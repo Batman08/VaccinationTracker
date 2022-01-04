@@ -122,9 +122,9 @@ DELIMITER ;
 -- This will get a list of vaccinations carried out by each centre
 -- ---------------------------------------------------------------
 
-DROP procedure IF EXISTS `spGetVaccinationsByCentre`;
+DROP procedure IF EXISTS `spGetReportVaccinationsByCentre`;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationsByCentre`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetReportVaccinationsByCentre`()
 BEGIN
 	SELECT vc.Name, vc.Address, vc.Postcode, vc.Telephone, Count(pv.VaccinationCentreId) AS NumberofVaccinations
 	FROM PatientVaccinations pv

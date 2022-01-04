@@ -95,7 +95,7 @@ function SavePatientVaccination(
                                                        '$p_PatientPostcode', '$p_PatientTelephone')", false);
 }
 
-function GetVaccinationsByCentreReport()
+function GetReportVaccinationsByCentre()
 {
-    return CallDatabase("call spGetVaccinationsByCentre()", true);
+    return CallDatabase("call spGetReportVaccinationsByCentre()", true);
 }
