@@ -14,7 +14,7 @@ $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
 
 <hr />
 
-<div class="alert alert-primary" role="alert" style="font-weight: bold;">
+<div class="alert alert-success" role="alert" style="font-weight: bold;">
     Total Number of Vaccinations: <?= $totalMedicalPersonVaccinations ?>
 </div>
 
