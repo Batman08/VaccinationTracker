@@ -2,9 +2,9 @@
     <div class="col-sm">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
+                <h5 class="card-title">Covid Vaccinations by Area</h5>
+                <p class="card-text">Displays the total number of covid vaccinations carried out by area.</p>
+                <a href="?ReportType=1" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
             <div class="card-body">
                 <h5 class="card-title">Vaccination Type Report</h5>
                 <p class="card-text">A report on the number of patients for each type of vaccination.</p>
-                <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
+                <a href="?ReportType=2" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="card-body">
                 <h5 class="card-title">Vaccinations by Centre</h5>
                 <p class="card-text">Displays the number of vaccinations carried out by each centre.</p>
-                <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
+                <a href="?ReportType=3" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
 <br />
 
 <?php
-$reportType = "1";
+$reportType = $_GET['ReportType'];
 
 switch ($reportType) {
     case "1":
