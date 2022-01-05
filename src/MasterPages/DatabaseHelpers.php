@@ -127,3 +127,9 @@ function GetTotalCovidVaccinations()
     $total = CallDatabase("call spGetTotalCovidVaccinations()", true);
     return $total[0]['TotalCovidVaccinations'];
 }
+
+function GetTotalMedicalPersonVaccinations($p_MedicalPersonId)
+{
+    $total = CallDatabase("call spGetTotalMedicalPersonVaccinations('$p_MedicalPersonId')", true);
+    return $total[0]['TotalMedicalPersonVaccinations'];
+}

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $medicalPerson = GetMedicalPerson($_SESSION['medicalPersonId'])[0];
+$totalMedicalPersonVaccinations = GetTotalMedicalPersonVaccinations($_SESSION['medicalPersonId']);
 $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
 ?>
 
@@ -12,6 +13,10 @@ $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
 </div>
 
 <hr />
+
+<div class="alert alert-primary" role="alert" style="font-weight: bold;">
+    Total Number of Vaccinations: <?= $totalMedicalPersonVaccinations ?>
+</div>
 
 <table class="table table-striped table-hover">
     <thead>

@@ -238,3 +238,19 @@ BEGIN
 	WHERE vt.name LIKE "COVID-19%";
 END$$
 DELIMITER ;
+
+
+-- [spGetTotalMedicalPersonVaccinations]
+-- This will get total number of vaccinations for each medical person
+-- ------------------------------------------------------------------
+
+DROP procedure IF EXISTS `spGetTotalMedicalPersonVaccinations`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetTotalMedicalPersonVaccinations`(IN p_MedicalPersonId INT)
+BEGIN
+	SELECT COUNT(*)
+	FROM medicalpersons mp 
+		INNER JOIN patientvaccinations pv ON mp.MedicalPersonId = pv.MedicalPersonId		
+	WHERE mp.MedicalPersonId = p_MedicalPersonId;
+END$$
+DELIMITER ;
