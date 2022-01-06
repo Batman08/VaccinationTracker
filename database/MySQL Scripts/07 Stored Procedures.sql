@@ -189,7 +189,7 @@ BEGIN
 		INNER JOIN Temp_AreaVaxQty t2 ON t1.Area = t2.Area
 	SET t1.TotalVax = t2.Qty;
 	
-	SELECT * FROM Temp_AreaVaxDetails ORDER BY TotalVax DESC, NumVaxByArea DESC, Vaccine;
+	SELECT * FROM Temp_AreaVaxDetails ORDER BY TotalVax DESC, Area, NumVaxByArea DESC, Vaccine;
 	
     -- delete temporary tables as they are no longer required
 	DROP TEMPORARY TABLE Temp_AreaVaxDetails;
@@ -248,7 +248,7 @@ DROP procedure IF EXISTS `spGetTotalMedicalPersonVaccinations`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetTotalMedicalPersonVaccinations`(IN p_MedicalPersonId INT)
 BEGIN
-	SELECT COUNT(*)
+	SELECT COUNT(*) AS TotalMedicalPersonVaccinations
 	FROM medicalpersons mp 
 		INNER JOIN patientvaccinations pv ON mp.MedicalPersonId = pv.MedicalPersonId		
 	WHERE mp.MedicalPersonId = p_MedicalPersonId;

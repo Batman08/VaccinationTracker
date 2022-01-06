@@ -4,7 +4,7 @@ $reportData = GetReportCovidVaccinationsByArea();
 ?>
 
 <div class="alert alert-primary" role="alert" style="font-weight: bold;">
-Total Number of Covid Vaccinations: <?= $totalCovidVaccinations ?>
+    Total Number of Covid Vaccinations: <?= $totalCovidVaccinations ?>
 </div>
 
 <table class="table table-striped table-hover">
@@ -17,19 +17,25 @@ Total Number of Covid Vaccinations: <?= $totalCovidVaccinations ?>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($reportData as $i) { ?>
+        <?php
+        $previous = "";
+        $currentArea = "";
+        $totalItems = count($reportData);
+        for ($i = 0; $i < $totalItems; $i++) {
+            $item = $reportData[$i];
+            $currentArea = $item['Area']; ?>
             <tr>
                 <td>
-                    <span style="font-size: larger;"><?= $i['Area'] ?></span>
+                    <span style="font-size: larger;"><?= $item['Area'] ?></span>
                 </td>
                 <td>
-                    <span style="font-size: larger;"><?= $i['TotalVax'] ?></span>
+                    <span style="font-size: larger;"><?= $item['TotalVax'] ?></span>
                 </td>
                 <td>
-                    <span style="font-size: larger;"><?= $i['Vaccine'] ?></span>
+                    <span style="font-size: larger;"><?= $item['Vaccine'] ?></span>
                 </td>
                 <td>
-                    <span style="font-size: larger;"><?= $i['NumVaxByArea'] ?></span>
+                    <span style="font-size: larger;"><?= $item['NumVaxByArea'] ?></span>
                 </td>
             </tr>
         <?php } ?>
