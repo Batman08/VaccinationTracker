@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if ($_SESSION["medicalPersonId"] == null && basename($_SERVER['PHP_SELF']) != "Login.php") {
+    header('Location: ../Login/Login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +27,13 @@
 <body>
     <h1><?php echo $page_header ?></h1>
     <div class="container">
+
+        <?php if (basename($_SERVER['PHP_SELF']) != "Login.php") { ?>
+            <div class="col-sm-12 padBottom30" style="text-align: right;">
+                <a href="/Login/Logout.php" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            </div>
+        <?php } ?>
+
         <?php include($page_content); ?>
     </div>
 
