@@ -5,6 +5,18 @@ $vaccinationCentres = GetVaccinationCentres();
 $vaccinationTypes = GetVaccinationTypes();
 ?>
 
+<?php if ($_GET['SavedPatient'] == "success") { ?>
+    <div class="alert alert-success" role="alert">
+        <i class="far fa-check-circle"></i>
+        Successfully saved patient vaccination.
+    </div>
+<?php } elseif ($_GET['SavedPatient'] == "failed") { ?>
+    <div class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        Failed to save patient vaccination, pleast try again.
+    </div>
+<?php } ?>
+
 <div class="row">
     <div class="col-sm-12">
         <h3><i class="fas fa-user"></i> <?= $medicalPerson['FirstName'] . ' ' . $medicalPerson['LastName'] . ' - ' . $medicalPerson['Profession']; ?></h3>
@@ -135,7 +147,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Add Patient Button -->
     <div class="row padBottom10" style="margin-top: 20px;">
         <div class="col-md-3">
-            <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-user-plus"></i> Add Patient</button>
+            <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-user-plus"></i> Save Patient Vaccination</button>
         </div>
     </div>
 </form>

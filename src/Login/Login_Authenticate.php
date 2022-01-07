@@ -5,6 +5,8 @@
 
     if ($username == "DemoAdministrator"){
         header("Location: ../AdminReports/AdminReports.php");
+    }elseif($username =="") {
+        header("Location: ../Login/Login.php");
     }else {
         header("Location: ../PatientVaccinations/VaccinatePatient.php");
     }
