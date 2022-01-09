@@ -7,12 +7,12 @@ $vaccinationTypes = GetVaccinationTypes();
 
 <?php if ($_GET['SavedPatient'] == "success") { ?>
     <div class="alert alert-success" role="alert">
-        <i class="far fa-check-circle"></i>
+        <i class="fas fa-check fa-lg"></i>
         Successfully saved patient vaccination.
     </div>
 <?php } elseif ($_GET['SavedPatient'] == "failed") { ?>
     <div class="alert alert-danger" role="alert">
-        <i class="fas fa-exclamation-triangle"></i>
+        <i class="fas fa-times fa-lg"></i>
         Failed to save patient vaccination, pleast try again.
     </div>
 <?php } ?>

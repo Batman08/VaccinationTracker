@@ -13,11 +13,9 @@
     $p_PatientPostcode = $_POST["txtPatientPostcode"];
     $p_PatientTelephone = $_POST["txtPatientTelephone"];
 
-    $checkSavedPatient = $_SESSION["savedPatient"];
-
     include("../MasterPages/DatabaseHelpers.php");
+    
+    SavePatientVaccination($p_MedicalPersonId, $p_VaccinationCentreId, $p_DateTime, $p_VaccinationTypeId, 
+    $p_PatientUniqueId, $p_PatientFirstName, $p_PatientLastName, $p_PatientDOB, $p_PatientAddress, $p_PatientPostcode, $p_PatientTelephone);
 
-     SavePatientVaccination($p_MedicalPersonId, $p_VaccinationCentreId, $p_DateTime, $p_VaccinationTypeId, 
-                            $p_PatientUniqueId, $p_PatientFirstName, $p_PatientLastName, $p_PatientDOB, $p_PatientAddress, $p_PatientPostcode, $p_PatientTelephone);
-
-    header("Location: VaccinatePatient.php?SavedPatient=" . $checkSavedPatient);
+    header("Location: VaccinatePatient.php?SavedPatient=" . $_SESSION["savedPatientVax"]);

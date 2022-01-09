@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function OpenConnection()
 {
@@ -25,9 +26,9 @@ function CallDatabase($sql, $isDataReturned)
             $result = mysqli_query($conn, $sql);
 
             if ($result == false) {
-                $_SESSION["savedPatient"] = "failed"; // set submission status to failed
-                header("Location: VaccinatePatient.php?SavedPatient=" . $_SESSION["savedPatient"]); // redirect to vaccinations page with failed warning
-                die('Invalid query: ' . mysqli_error($conn));
+                $_SESSION["savedPatientVax"] = "failed";
+            } else {
+                $_SESSION["SavedPatientVax"] = "success";
             }
 
             // we have data so store in variable then return
@@ -37,19 +38,16 @@ function CallDatabase($sql, $isDataReturned)
             }
 
             mysqli_free_result($result); // free memory associated with result
-            $_SESSION["savedPatient"] = "success"; // set submission status to success
             $conn->close();
             return $rows;
         } else {
             $result = mysqli_query($conn, $sql);
-            if ($result == false)
-            {
-                $_SESSION["savedPatient"] = "failed"; // set submission status to failed
-                header("Location: VaccinatePatient.php?SavedPatient=" . $_SESSION["savedPatient"]); // redirect to vaccinations page with failed warning
-                die('Invalid query: ' . mysqli_error($conn));
+            if ($result == false) {
+                $_SESSION["savedPatientVax"] = "failed";
+            } else {
+                $_SESSION["savedPatientVax"] = "success";
             }
 
-            $_SESSION["savedPatient"] = "success"; // set submission status to success
             $conn->close();
         }
     } catch (Exception $e) {
