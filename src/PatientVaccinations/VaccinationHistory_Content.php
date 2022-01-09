@@ -5,20 +5,26 @@ $totalMedicalPersonVaccinations = GetTotalMedicalPersonVaccinations($_SESSION['m
 $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
 ?>
 
-<div class="row padBottom10">
+<div class="row">
     <div class="col-sm-12">
         <h3><i class="fas fa-user"></i> <?= $medicalPerson['FirstName'] . ' ' . $medicalPerson['LastName'] . ' - ' . $medicalPerson['Profession']; ?></h3>
         <div class="text-muted"><?= $medicalPerson['Address'] . ', ' . $medicalPerson['Postcode'] . ', Tel:' . $medicalPerson['Telephone']; ?></div>
     </div>
 </div>
 
-<hr />
+<div class="row padBottom30">
+    <div class="col-sm-12" style="text-align: right;">
+        <a href="VaccinatePatient.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+</div>
 
-<div class="alert alert-success" role="alert" style="font-weight: bold;">
+<div class="alert alert-primary" role="alert" style="font-weight: bold;">
+    <h5>Vaccination History</h5>
     Total Number of Vaccinations: <?= $totalMedicalPersonVaccinations ?>
 </div>
 
 <table class="table table-striped table-hover">
+    <colgroup></colgroup>
     <thead>
         <tr>
             <th scope="col">#</th>

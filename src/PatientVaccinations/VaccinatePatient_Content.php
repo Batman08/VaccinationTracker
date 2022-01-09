@@ -147,7 +147,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Add Patient Button -->
     <div class="row padBottom10" style="margin-top: 20px;">
         <div class="col-md-3">
-            <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-user-plus"></i> Save Patient Vaccination</button>
+            <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-save"></i> Save Patient Vaccination</button>
         </div>
     </div>
 </form>

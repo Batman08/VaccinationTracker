@@ -4,10 +4,12 @@ $reportData = GetReportVaccinationsByCentre();
 ?>
 
 <div class="alert alert-primary" role="alert" style="font-weight: bold;">
+    <h5>3. Vaccinations by Centre</h5>
     Total Number of Vaccinations: <?= $totalVaccinations ?>
 </div>
 
 <table class="table table-striped table-hover">
+    <colgroup></colgroup>
     <thead>
         <tr>
             <th scope="col">Vaccination Centre</th>
@@ -27,7 +29,7 @@ $reportData = GetReportVaccinationsByCentre();
                     <span class="text-muted"><i class="fas fa-phone-alt fa-fw"></i> <?= $i['Telephone'] ?></span>
                 </td>
                 <td>
-                <span style="font-size: larger;"><b><?= $i['NumberOfVaccinations'] ?></b></span>
+                    <span style="font-size: larger;"><b><?= $i['NumberOfVaccinations'] ?></b></span>
                 </td>
             </tr>
         <?php } ?>

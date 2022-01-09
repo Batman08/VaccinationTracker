@@ -4,10 +4,12 @@ $reportData = GetReportPatientsByVaccinationType();
 ?>
 
 <div class="alert alert-primary" role="alert" style="font-weight: bold;">
+    <h5>2. Vaccination Type Report</h5>
     Total Number of Patients: <?= $totalPatients ?>
 </div>
 
 <table class="table table-striped table-hover">
+    <colgroup></colgroup>
     <thead>
         <tr>
             <th scope="col">Vaccination Type</th>
