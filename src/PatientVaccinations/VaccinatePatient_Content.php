@@ -35,7 +35,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Choose Vaccination Centre -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="ddlVaccinationCentre">Choose Vaccination Centre:</label>
+            <label for="ddlVaccinationCentre"><i class="fas fa-clinic-medical fa-fw"></i> Choose Vaccination Centre:</label>
         </div>
         <div class="col-md-9">
             <select name="ddlVaccinationCentre" class="form-select" aria-label="select vaccination centre" required>
@@ -50,7 +50,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Date -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtDateTime">Date:</label>
+            <label for="txtDateTime"><i class="fas fa-calendar-day fa-fw"></i> Date:</label>
         </div>
         <div class="col-md-9">
             <input type="datetime-local" class="form-control" name="txtDateTime" required>
@@ -60,7 +60,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Vaccination Type -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="ddlVaccinationType">Vaccination Type:</label>
+            <label for="ddlVaccinationType"><i class="fas fa-syringe"></i> Vaccination Type:</label>
         </div>
         <div class="col-md-9">
             <select name="ddlVaccinationType" class="form-select" aria-label="select user" required>
@@ -77,7 +77,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient Identifier -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientUniqueId">Patient Identifier:</label>
+            <label for="txtPatientUniqueId"><i class="fas fa-id-card-alt fa-fw"></i> Patient Identifier:</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" name="txtPatientUniqueId" placeholder="Enter Unique Patient Identifier" maxlength="256" required>
@@ -87,7 +87,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient First Name -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientFirstName">Patient First Name:</label>
+            <label for="txtPatientFirstName"><i class="fas fa-user fa-fw"></i> Patient First Name:</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" name="txtPatientFirstName" placeholder="Enter Patient First Name" maxlength="256" required>
@@ -97,7 +97,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient Last Name -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientLastName">Patient First Name:</label>
+            <label for="txtPatientLastName"><i class="fas fa-user fa-fw"></i> Patient Last Name:</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" name="txtPatientLastName" placeholder="Enter Patient Last Name" maxlength="256" required>
@@ -107,7 +107,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Date of Birth -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientDOB">Date of Birth:</label>
+            <label for="txtPatientDOB"><i class="fas fa-calendar-day fa-fw"></i> Date of Birth:</label>
         </div>
         <div class="col-md-9">
             <input type="date" class="form-control" name="txtPatientDOB" required>
@@ -117,7 +117,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient Address -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientAddress">Patient Address</label>
+            <label for="txtPatientAddress"><i class="fas fa-map-marker-alt fa-fw"></i> Address</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" name="txtPatientAddress" placeholder="Enter Patient Address" maxlength="256" required>
@@ -127,7 +127,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient Postcode -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientPostcode">Patient Postcode</label>
+            <label for="txtPatientPostcode"><i class="fas fa-map-pin fa-fw"></i> Patient Postcode</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" name="txtPatientPostcode" placeholder="Enter Patient Postcode" maxlength="10" required>
@@ -137,7 +137,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient Phone Number -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientTelephone">Patient Phone Number</label>
+            <label for="txtPatientTelephone"><i class="fas fa-phone-alt fa-fw"></i> Patient Phone Number</label>
         </div>
         <div class="col-md-9">
             <input type="tel" class="form-control" name="txtPatientTelephone" placeholder="Enter Patient Phone Number" maxlength="15" required>
