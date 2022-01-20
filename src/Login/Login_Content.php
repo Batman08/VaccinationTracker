@@ -1,6 +1,5 @@
 <?php
 $usernames = GetUsernames();
-
 ?>
 
 <div class="row">

@@ -1,5 +1,4 @@
 <?php
-session_start();
 $medicalPerson = GetMedicalPerson($_SESSION['medicalPersonId'])[0];
 $totalMedicalPersonVaccinations = GetTotalMedicalPersonVaccinations($_SESSION['medicalPersonId']);
 $vaccinationHistory = GetVaccinationHistory($_SESSION['medicalPersonId']);
