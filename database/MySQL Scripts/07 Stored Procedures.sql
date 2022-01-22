@@ -60,8 +60,8 @@ DROP procedure IF EXISTS `spGetVaccinationHistory`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetVaccinationHistory`(IN p_MedicalPersonId INT)
 BEGIN
-	SET @row_number = 0;
-	SELECT (@row_number:=@row_number + 1) AS RowNum, DATE_FORMAT(pv.DateTime, "%d %b %Y at %h:%i %p") AS DateTime, vc.Name AS VaccinationCentre, CONCAT(p.FirstName , ' ' , p.LastName) AS PatientName, vt.Name AS VaccinationType
+	CREATE TEMPORARY TABLE Temp_VaxHistory
+	SELECT DATE_FORMAT(pv.DateTime, "%d %b %Y at %h:%i %p") AS DateTime, vc.Name AS VaccinationCentre, CONCAT(p.FirstName , ' ' , p.LastName) AS PatientName, vt.Name AS VaccinationType
 	FROM medicalpersons mp 
 		INNER JOIN patientvaccinations pv ON mp.MedicalPersonId = pv.MedicalPersonId
 		INNER JOIN vaccinationcentres vc ON pv.VaccinationCentreId = vc.VaccinationCentreId
@@ -69,6 +69,10 @@ BEGIN
 		INNER JOIN vaccinationtypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
 	WHERE mp.MedicalPersonId = p_MedicalPersonId
 	ORDER BY pv.DateTime DESC;
+
+	SET @row_number = 0;
+	SELECT *, (@row_number:=@row_number + 1) AS RowNum
+	FROM Temp_VaxHistory;
 END$$
 DELIMITER ;
 

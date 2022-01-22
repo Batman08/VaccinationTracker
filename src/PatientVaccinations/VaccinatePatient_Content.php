@@ -34,7 +34,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Choose Vaccination Centre -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="ddlVaccinationCentre"><i class="fas fa-clinic-medical fa-fw"></i> Choose Vaccination Centre:</label>
+            <label for="ddlVaccinationCentre"><i class="fas fa-clinic-medical fa-fw"></i> Vaccination Centre:</label>
         </div>
         <div class="col-md-9">
             <select name="ddlVaccinationCentre" class="form-select" aria-label="select vaccination centre" required>
@@ -106,7 +106,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Date of Birth -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientDOB"><i class="fas fa-calendar-day fa-fw"></i> Date of Birth:</label>
+            <label for="txtPatientDOB"><i class="fas fa-calendar-day fa-fw"></i>Patient Date of Birth:</label>
         </div>
         <div class="col-md-9">
             <input type="date" class="form-control" name="txtPatientDOB" required>
@@ -116,7 +116,7 @@ $vaccinationTypes = GetVaccinationTypes();
     <!-- Patient Address -->
     <div class="row padBottom10">
         <div class="col-md-3">
-            <label for="txtPatientAddress"><i class="fas fa-map-marker-alt fa-fw"></i> Address</label>
+            <label for="txtPatientAddress"><i class="fas fa-map-marker-alt fa-fw"></i> Patient Address</label>
         </div>
         <div class="col-md-9">
             <input type="text" class="form-control" name="txtPatientAddress" placeholder="Enter Patient Address" maxlength="256" required>
