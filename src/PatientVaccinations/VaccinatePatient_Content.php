@@ -2,6 +2,7 @@
 $medicalPerson = GetMedicalPerson($_SESSION['medicalPersonId'])[0];
 $vaccinationCentres = GetVaccinationCentres();
 $vaccinationTypes = GetVaccinationTypes();
+$currentDateTime = date("Y-m-d\TH:i");
 ?>
 
 <?php if ($_GET['SavedPatient'] == "success") { ?>
@@ -52,7 +53,7 @@ $vaccinationTypes = GetVaccinationTypes();
             <label for="txtDateTime"><i class="fas fa-calendar-day fa-fw"></i> Date:</label>
         </div>
         <div class="col-md-9">
-            <input type="datetime-local" class="form-control" name="txtDateTime" required>
+            <input type="datetime-local" class="form-control" name="txtDateTime" value="<?= $currentDateTime; ?>" required>
         </div>
     </div>
 
