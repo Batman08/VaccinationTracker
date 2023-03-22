@@ -140,8 +140,9 @@ DELIMITER ;
 
 
 -- [spGetReportPatientsByVaccinationType]
--- This will get a list of vaccinations carried out by each centre
--- ---------------------------------------------------------------
+-- This will get a list of vaccination types, the number of patients and percentage of total patients that have it 
+-- between 1st of january 2020 and the current date
+-- ---------------------------------------------------------------------------------------------------------------
 
 DROP procedure IF EXISTS `spGetReportPatientsByVaccinationType`;
 DELIMITER $$
@@ -152,6 +153,7 @@ BEGIN
 	SELECT vt.Name, COUNT(pv.VaccinationTypeId) AS NumberOfPatients, COUNT(pv.VaccinationTypeId) / @TotalPatients * 100 AS PercentOfPatients
 	FROM PatientVaccinations pv
 		INNER JOIN VaccinationTypes vt ON pv.VaccinationTypeId = vt.VaccinationTypeId
+	WHERE pv.DateTime BETWEEN DATE("2020-01-1") AND DATE(CURDATE())
 	GROUP BY vt.VaccinationTypeId
 	ORDER BY NumberOfPatients DESC;
 END$$
