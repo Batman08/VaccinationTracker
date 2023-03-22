@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h5 class="card-title">1. Covid Vaccinations by Area</h5>
                 <p class="card-text">Displays the total number of covid vaccinations carried out by area.</p>
-                <a href="?ReportType=1" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
+                <a href="?ReportType=1" class="btn btn-primary" style="margin-top: 24px;"><i class="fas fa-play"></i> Run Report</a>
             </div>
         </div>
     </div>
@@ -13,6 +13,9 @@
             <div class="card-body">
                 <h5 class="card-title">2. Vaccination Type Report</h5>
                 <p class="card-text">A report on the number of patients for each type of vaccination.</p>
+                <div class="text-muted">
+                    Uses data from 01/01/2020 - <?= date("d/m/Y") ?>
+                </div>
                 <a href="?ReportType=2" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
             </div>
         </div>
@@ -22,7 +25,7 @@
             <div class="card-body">
                 <h5 class="card-title">3. Vaccinations by Centre</h5>
                 <p class="card-text">Displays the number of vaccinations carried out by each centre.</p>
-                <a href="?ReportType=3" class="btn btn-primary"><i class="fas fa-play"></i> Run Report</a>
+                <a href="?ReportType=3" class="btn btn-primary" style="margin-top: 24px;"><i class="fas fa-play"></i> Run Report</a>
             </div>
         </div>
     </div>
