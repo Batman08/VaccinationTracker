@@ -144,3 +144,30 @@ for the existing user
 Converted Patients table and Patients data t-sql scripts to mysql
 
 61. Used notepadd++ to add a semicolon at the end of each insert statement for Paients table data
+
+62. 
+
+
+
+added patient vaccination history
+talk about sql to return data and other stuff.
+
+altered telephone number length to 15 and database column length as well to 15
+
+added admin to login username drop down.
+added admin page
+added 3 reports
+how i displayed them
+added total counter
+added total counter to vaccination history page
+fixed log in error
+added log out button
+added save patient vaccination alert
+fixed logging in with not a recognised user error redirecting to patient vaccinations page
+add icons to patient vaccination form
+fixed table report 1 columns displaying data
+added back button to vaccination history
+added icons / changed patient vaccination submit form icon
+added footer to master page
+removed useless bootrap icons from footer
+had to change insert statements for big inserts (06 Data_PatientVaccinations School)
